@@ -62,7 +62,12 @@
     const small=item.amount!==null && item.amount<=115, medium=item.amount!==null && item.amount<=250;
     let score=item.historical;
     if (goal.key==='first_purchase') {
-      score+=(small?6:medium?3:0)+(item.flavor?1:0)+(item.gift?-3:0);
+      if (sharing) {
+        score+=(item.pack>=4?7:0)+(medium?1:0)+(item.gift?1:0);
+      } else {
+        score+=(small?6:medium?3:0)+(item.gift?-3:0);
+      }
+      score+=(item.flavor?1:0);
       if (!sharing && item.category==='ingredient') score-=2;
     } else if (goal.key==='add_to_cart') {
       score+=(item.pack>=4?4:0)+(sharing&&item.pack>=7?3:0)+(item.gift?1:0);
@@ -117,10 +122,12 @@
     const [hero,two,three]=selected;
     const prior=ranking.pool.find(i=>i.id===ctx.selected?.[0]);
     const changed=prior && prior.id!==hero.id;
-    const size=hero.sizeText ? '，包装标示 '+hero.sizeText : '';
+    const size=hero.sizeText && !hero.name.includes(hero.sizeText) ? '，包装标示 '+hero.sizeText : '';
     let reason;
     if(goal.key==='first_purchase') {
-      reason=hero.amount!==null&&hero.amount<=115 ? '这款适合用一人尝鲜的场景开篇，挑选理由容易在首屏讲清。' : '先用能看清品类和包装的一款商品介绍茶歇吃法，再引导首次购买。';
+      if (ranking.sharing && hero.pack>=4) reason='商品有明确的件数信息，邀请同事或室友分享时，首屏可清楚交代一包怎样分。';
+      else if (!ranking.sharing && hero.amount!==null && hero.amount<=115) reason='这款适合用一人尝鲜的场景开篇，挑选理由容易在首屏讲清。';
+      else reason='先用能看清品类和包装的一款商品介绍茶歇吃法，再引导首次购买。';
     } else if(goal.key==='add_to_cart') {
       reason=hero.pack>=2 ? '包装标有 '+hero.pack+' 个包装单位，可拍成多人分享或分次食用的组合。' : '先说明主推的食用场景，再给出一个用户能单独加购的搭配。';
     } else {
