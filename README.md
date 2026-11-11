@@ -1,6 +1,14 @@
-# Yami 茶歇营销 Agent
+# 沈淇的 AI 营销作品
 
-[打开营销工作台](https://qishenqishen.github.io/yami-campaign-studio/)
+**ZooWork AI 实习项目 · 餐饮内容营销 Agent**
+
+为餐厅策划一条 Instagram 短片。选择「内容创作专家」和一个选题，查看 15 秒分镜脚本，核对素材后即可加入交付清单。[打开餐饮营销演示](https://portfolio.qs2077.workers.dev/assets/zooclaw-agent-demo)
+
+**Yami 实习项目 · 食品电商活动策划 Agent**
+
+为北美留学生策划一场茶歇活动。选择首购目标，模拟主推商品缺货，查看替补理由以及调整后的渠道文案。[打开 Yami 茶歇营销工作台](https://qishenqishen.github.io/yami-campaign-studio/)
+
+## Yami 茶歇营销 Agent 项目说明
 
 以 Yami 北美食品电商「茶歇大会」为背景，围绕同一份客户简报完成目标判断、商品筛选、渠道创意和效果复盘。项目整理及实现由沈淇完成。
 
